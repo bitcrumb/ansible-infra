@@ -8,7 +8,7 @@ repos:
     hooks:
       - id: disallow-yml
         name: Disallow .yml
-        entry: .githooks/disallow-yml
+        entry: .githooks/disallow-yml.sh
         language: script
         files: .yml$
       - id: yamllint
