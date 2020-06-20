@@ -9,3 +9,23 @@ Run the command below to setup all necessary dependencies. Just make sure you ha
 ```shell
 $ make install
 ```
+
+## Playbooks
+
+### Maintenance
+
+Perform regular maintenance on the entire inventoy by running the **maintenance** playbook.
+
+```
+$ ansible-playbook -v playbooks/maintenance.yaml
+```
+
+### Unifi Controller
+
+Install the Unifi Controller to perform network monitoring by running the **unifi** playbook.
+
+```
+$ ansible-playbook -v playbooks/unifi.yaml
+```
+
+You can now visit the [web interface](https://raspberrypi.local:8443/) of the Unifi Controller.

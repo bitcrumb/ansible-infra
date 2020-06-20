@@ -1,0 +1,4 @@
+---
+- name: Update all apt packages
+  become: true
+  shell: apt update && apt upgrade # TODO: Use apt module instead

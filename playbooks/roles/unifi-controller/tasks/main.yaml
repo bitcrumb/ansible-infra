@@ -1,0 +1,39 @@
+---
+- name: Install version 8 of the Java runtime environment
+  become: true
+  apt:
+    name: openjdk-8-jre-headless
+    state: latest
+- name: Install rng-tools to improve startup speed of Unifi Controller
+  become: true
+  apt:
+    name: rng-tools
+    state: latest
+- name: Edit rng-tools configuration
+  become: true
+  replace:
+    path: /etc/default/rng-tools
+    regexp: "^#(.*HRNGDEVICE=/dev/hwrng.*)"
+    replace: '\1'
+- name: Restart rng-tools service
+  become: true
+  service:
+    name: rng-tools
+    state: restarted
+- name: Add the unifi repo to sources list
+  become: true
+  lineinfile:
+    path: /etc/apt/sources.list.d/100-ubnt-unifi.list
+    create: true
+    line: deb https://www.ui.com/downloads/unifi/debian stable ubiquiti
+- name: Add the unifi repo GPG key
+  become: true
+  get_url:
+    url: https://dl.ui.com/unifi/unifi-repo.gpg
+    dest: /etc/apt/trusted.gpg.d/unifi-repo.gpg
+- name: Install Unifi Controller package
+  become: true
+  apt:
+    name: unifi
+    update_cache: true
+    state: latest
