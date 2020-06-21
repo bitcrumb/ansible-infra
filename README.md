@@ -29,3 +29,13 @@ $ ansible-playbook -v playbooks/unifi.yaml
 ```
 
 You can now visit the [web interface](https://raspberrypi.local:8443/) of the Unifi Controller.
+
+### Home Assistant
+
+Install Home Asssitant (Supervised) by running the **home-assistant** playbook.
+
+```
+$ ansible-playbook -v playbooks/home-assistant.yaml
+```
+
+You can now visit the [web interface](https://raspberrypi.local:8123/) of Home Assistant.
