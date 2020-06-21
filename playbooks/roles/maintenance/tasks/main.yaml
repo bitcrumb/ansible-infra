@@ -1,4 +1,6 @@
 ---
-- name: Update all apt packages
+- name: Update package lists & upgrade apt packages
   become: true
-  shell: apt update && apt upgrade # TODO: Use apt module instead
+  apt:
+    upgrade: dist
+    update_cache: true
