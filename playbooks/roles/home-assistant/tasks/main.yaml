@@ -1,0 +1,40 @@
+# This playbook is based on the steps explained on the Unifi community forum: https://community.home-assistant.io/t/installing-home-assistant-supervised-on-raspberry-pi-os/201836
+---
+- name: Install required packages
+  become: true
+  apt:
+    name:
+      [
+        "software-properties-common",
+        "apparmor-utils",
+        "apt-transport-https",
+        "avahi-daemon",
+        "ca-certificates",
+        "curl",
+        "dbus",
+        "jq",
+        "network-manager",
+        "socat",
+      ]
+    state: latest
+- name: Stop & disable ModemManager
+  become: true
+  systemd:
+    name: ModemManager
+    state: stopped
+    enabled: no
+- name: Home assistant installation
+  become: true
+  block:
+    - name: Download official docker install script
+      get_url:
+        url: "{{ home_assistant_install_script_url }}"
+        dest: "{{ home_assistant_install_script_path }}"
+        mode: +x
+        force: true
+    - name: Execute the docker install script
+      command: "{{ home_assistant_install_script_path }} -m {{ raspberrypi_model }}"
+    - name: Remove the installer script
+      file:
+        path: "{{ home_assistant_install_script_path }}"
+        state: absent

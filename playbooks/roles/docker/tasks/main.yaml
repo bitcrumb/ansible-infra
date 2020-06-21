@@ -1,0 +1,29 @@
+---
+- name: Check if docker is installed already
+  become: true
+  apt:
+    name: docker-ce
+    state: absent
+  register: has_docker_installed
+- name: Install docker
+  become: true
+  shell: curl -fsSL get.docker.com | sh
+# TODO: Don't use the shell module for the above
+# - name: Docker installation
+#   become: true
+#   when: has_docker_installed is failed
+#   block:
+#     - name: Download official docker install script
+#       get_url:
+#         url: "{{ docker_install_script_url }}"
+#         dest: "{{ docker_install_script_path }}"
+#         mode: +x
+#         force: true
+#     - name: Execute the docker install script
+#       command: "{{ docker_install_script_path }}"
+#     - name: Remove the installer script
+#       file:
+#         path: "{{ docker_install_script_path }}"
+#         state: absent
+- name: Report the Docker version
+  command: docker --version
