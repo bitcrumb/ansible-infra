@@ -38,4 +38,4 @@ Install Home Asssitant (Supervised) by running the **home-assistant** playbook.
 $ ansible-playbook -v playbooks/home-assistant.yaml
 ```
 
-You can now visit the [web interface](https://raspberrypi.local:8123/) of Home Assistant.
+You can now visit the [web interface](http://raspberrypi.local:8123/) of Home Assistant.
