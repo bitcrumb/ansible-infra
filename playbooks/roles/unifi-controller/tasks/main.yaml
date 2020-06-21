@@ -1,3 +1,4 @@
+# This playbook is based on the steps explained here: https://pimylifeup.com/rasberry-pi-unifi/
 ---
 - name: Install version 8 of the Java runtime environment
   become: true
