@@ -26,13 +26,13 @@
 - name: Home assistant installation
   become: true
   block:
-    - name: Download official docker install script
+    - name: Download official home assistant install script
       get_url:
         url: "{{ home_assistant_install_script_url }}"
         dest: "{{ home_assistant_install_script_path }}"
         mode: +x
         force: true
-    - name: Execute the docker install script
+    - name: Execute the home assistant install script
       command: "{{ home_assistant_install_script_path }} -m {{ raspberrypi_model }}"
     - name: Remove the installer script
       file:
