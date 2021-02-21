@@ -1,0 +1,6 @@
+---
+- hosts: raspberrypi
+  become: true
+  become_method: sudo
+  roles:
+    - user-setup

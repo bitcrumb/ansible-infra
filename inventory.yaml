@@ -2,10 +2,15 @@
 all:
   vars:
     ansible_python_interpreter: /usr/bin/python3
-    ansible_user: pi
+    ansible_user: root
+    main_user: lode
+    main_user_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
   children:
     rpi:
       hosts:
         raspberrypi:
           ansible_host: raspberrypi.local
+      vars:
+        ansible_user: pi
+        main_user: pi

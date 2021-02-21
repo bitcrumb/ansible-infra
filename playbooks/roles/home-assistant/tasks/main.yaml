@@ -1,4 +1,5 @@
-# This playbook is based on the steps explained on the Unifi community forum: https://community.home-assistant.io/t/installing-home-assistant-supervised-on-raspberry-pi-os/201836
+# This playbook is based on the steps explained on the Unifi community forum:
+# https://community.home-assistant.io/t/installing-home-assistant-supervised-on-a-raspberry-pi-with-debian-10/247116
 ---
 - name: Install required packages
   become: true

@@ -1,0 +1,95 @@
+---
+homebrew_installed_packages:
+  # region: Dev packages
+  - bash
+  - bash-completion
+  - binwalk
+  - curl
+  - coreutils
+  - diff-so-fancy
+  - findutils
+  - gcc
+  - git
+  - gnupg
+  - gnutls
+  - go
+  - grep
+  - gzip
+  - less
+  - make
+  - nano
+  - netcat
+  - nmap
+  - openssl
+  - pkg-config
+  - readline
+  - shellcheck
+  - shfmt
+  - trash
+  - tree
+  - unzip
+  - vim
+  - wget
+  # endregion
+  # region: Utils
+  - bat
+  - exa
+  - ffmpeg
+  - htop
+  - jq
+  - magic-wormhole
+  - mas
+  - rsync
+  - screen
+  - ssh-copy-id
+  - starship
+  - youtube-dl
+  - zsh
+  - zsh-completions
+# endregion
+homebrew_cask_apps:
+  # region: Apps
+  - 1password
+  - docker
+  - figma
+  - freac
+  - home-assistant
+  - hyper
+  - imageoptim
+  - insomnia
+  - keka
+  - notion
+  - openscad
+  - plex
+  - plexamp
+  - qmoji
+  - rectangle
+  - spotify
+  - synology-drive
+  - ultimaker-cura
+  - virtualbox
+  - virtualbox-extension-pack
+  - visual-studio-code
+  - vlc
+  # endregion
+  # region: Fonts
+  - font-fira-code
+  - font-fira-mono
+  - font-fira-sans
+  - font-ibm-plex
+# endregion
+mas_apps:
+  - 1333542190 # 1Password
+  - 1480068668 # Messenger
+  - 640199958 # Developer
+  - 419330170 # Moom
+  - 425424353 # The Unarchiver
+  - 1496833156 # Playgrounds
+  - 407963104 # Pixelmator
+  - 1176074088 # Termius
+  - 1449412482 # Reeder (4.2.8)
+  - 1516894961 # Codye
+  - 1450874784 # Transporter
+  - 1039633667 # Irvue
+  - 1295203466 # Microsoft Remote Desktop
+  - 803453959 # Slack

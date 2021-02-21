@@ -1,0 +1,19 @@
+# Create the user that will be used for daily operations
+---
+- name: Create admin user
+  user:
+    name: "{{ main_user }}"
+    shell: /bin/bash
+
+- name: Ensure admin user can log in with their key
+  authorized_key:
+    user: "{{ main_user }}"
+    key: "{{ main_user_key }}"
+#
+# - name: Ensure admin user is a passwordless sudoer
+#   lineinfile:
+#     dest: /etc/sudoers
+#     regexp: "^{{ main_user }}"
+#     line: "{{ main_user }} ALL=(ALL) NOPASSWD: ALL"
+#     state: present
+#     validate: "visudo -cf %s"

@@ -1,0 +1,8 @@
+# Installs homebrew
+---
+- name: Install homebrew role
+  include_role:
+    name: geerlingguy.homebrew
+- name: Update brew
+  homebrew:
+    update_homebrew: yes
