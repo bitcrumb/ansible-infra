@@ -19,3 +19,7 @@ make play_ping
 make play_dev
 make play_macos
 ````
+
+## Credits
+
+Heavily inspired on the [ansible-infra](https://github.com/thibmaek/ansible-infra) repo by [@thibmaek](https://github.com/thibmaek) <3
