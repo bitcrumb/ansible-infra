@@ -1,0 +1,10 @@
+{% if ansible_os_family == 'Darwin' %}
+# Use brew sbin to path
+export PATH="/usr/local/sbin:$PATH"
+
+{% endif %}
+# Set default editor to neovim
+export EDITOR=nano
+
+# Add ~/bin to the path for local CLI/binaries/scripts
+export PATH="$HOME/bin:$PATH";

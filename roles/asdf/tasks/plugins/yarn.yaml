@@ -1,0 +1,7 @@
+- name: 'Add Yarn plugin'
+  register: asdf_add_yarn
+  changed_when: '"already added" not in asdf_add_yarn.stderr'
+  failed_when:
+    - asdf_add_yarn.rc != 0
+    - '"already added" not in asdf_add_yarn.stderr'
+  ansible.builtin.command: 'asdf plugin add yarn'

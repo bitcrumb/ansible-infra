@@ -1,0 +1,14 @@
+- name: 'Add Java plugin'
+  register: asdf_add_java
+  changed_when: '"already added" not in asdf_add_java.stderr'
+  failed_when:
+    - asdf_add_java.rc != 0
+    - '"already added" not in asdf_add_java.stderr'
+  ansible.builtin.command: 'asdf plugin add java'
+
+- name: 'Source the Android environment'
+  ansible.builtin.blockinfile:
+    path: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/java.zsh'
+    create: true
+    block: |
+      . ~/.asdf/plugins/java/set-java-home.zsh

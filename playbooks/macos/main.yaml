@@ -1,0 +1,81 @@
+# macOS playbook to run on a local machine
+---
+- name: 'Setup personal macOS machine'
+  hosts: localhost
+
+  vars_files:
+    - './brew/vars_apps.yaml'
+    - './brew/vars_packages.yaml'
+    - './vars/mas_apps.yaml'
+
+  vars:
+    homebrew_cask_accept_external_apps: true
+    homebrew_upgrade_all_packages: false
+    homebrew_taps:
+      - homebrew/cask-drivers
+      - homebrew/cask-fonts
+      - homebrew/cask-versions
+      - homebrew/command-not-found
+      - homebrew/core
+      - homebrew/services
+
+  roles:
+    - name: geerlingguy.mac.homebrew
+      tags: [brew]
+    - name: geerlingguy.mac.mas
+      tags: [mas]
+    # - name: geerlingguy.mac.dock
+    #   tags: [dock]
+    - name: 'roles/zsh'
+      tags: [zsh]
+    # - name: 'roles/starship'
+    #   tags: [zsh, starship]
+    # - name: 'roles/powerline'
+    #   tags: [powerline]
+    # - name: 'roles/nano'
+    #   tags: [nano]
+    # - name: 'roles/htop'
+    #   tags: [htop]
+    # - name: 'roles/nvim'
+    #   tags: [nvim]
+    # - name: 'roles/ssh'
+    #   tags: [ssh]
+
+  tasks:
+    - name: 'Install general packages'
+      tags: [general]
+      community.general.packaging.os.homebrew:
+        name: '{{ item }}'
+        state: latest
+      loop: '{{ install_packages }}'
+
+    - name: 'Use brew bash'
+      tags: [bash]
+      become: true
+      ansible.builtin.lineinfile:
+        path: '/etc/shells'
+        line: '/opt/homebrew/bin/bash'
+        state: present
+
+    # - name: 'Install Xcode devtools'
+    #   tags: [dev]
+    #   become: true
+    #   register: xcode_devtools_installed
+    #   changed_when: '"command line tools are already installed" not in xcode_devtools_installed.stderr'
+    #   failed_when:
+    #     - xcode_devtools_installed.rc != 0
+    #     - '"command line tools are already installed" not in xcode_devtools_installed.stderr'
+    #   ansible.builtin.command: 'xcode-select --install'
+
+    # - name: 'Copy dotfiles (common)'
+    #   tags: [dotfiles]
+    #   ansible.posix.synchronize:
+    #     src: '../../files/dotfiles/'
+    #     dest: '{{ ansible_env.HOME }}/'
+
+    # - name: 'Set Git configuration'
+    #   tags: [git, dev]
+    #   community.general.git_config:
+    #     name: 'credential.helper'
+    #     scope: global
+    #     value: 'osxkeychain'

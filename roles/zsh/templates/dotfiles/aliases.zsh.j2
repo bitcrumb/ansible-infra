@@ -1,0 +1,20 @@
+{% if ansible_os_family == "Darwin" %}
+# Enable aliases to be sudo'd
+alias sudo="sudo "
+
+{% endif %}
+# Shortcuts
+alias temp="cd $HOME/Downloads && mkd temp"
+alias mime="file --mime-type"
+alias reload="exec $SHELL -l"
+alias path='echo -e ${PATH//:/\\n}'
+alias youtube-mp3="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
+alias grep="grep --color=auto"
+{% if ansible_os_family == "Darwin" %}
+alias here="open ."
+alias d="cd $HOME/Desktop"
+alias dl="cd $HOME/Downloads"
+alias dev="cd $HOME/Developer"
+alias proj="cd $HOME/Developer/Projects"
+alias play="cd $HOME/Developer/Playground"
+{% endif %}

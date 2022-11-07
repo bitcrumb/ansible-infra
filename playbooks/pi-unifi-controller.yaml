@@ -1,4 +1,0 @@
----
-- hosts: rpi
-  roles:
-    - unifi-controller

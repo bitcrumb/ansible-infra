@@ -1,0 +1,29 @@
+# Installs asdf on the system
+---
+- name: 'Install asdf (brew)'
+  when: ansible_os_family == 'Darwin'
+  ansible.builtin.include_tasks: './install_macos.yaml'
+
+# - name: 'Source asdf in shell (bash)'
+#   when: '"bash" in ansible_user_shell'
+#   ansible.builtin.include_tasks: './install_bash.yaml'
+
+# - name: 'Source asdf in shell (zsh)'
+#   when: '"zsh" in ansible_user_shell'
+#   ansible.builtin.include_tasks: './install_zsh.yaml'
+
+- name: 'Update existing plugins'
+  tags: [update]
+  changed_when: true
+  ansible.builtin.command: 'asdf plugin update --all'
+
+- name: 'Install plugins'
+  tags: [plugins]
+  ansible.builtin.include_tasks: './plugins/{{ item }}.yaml'
+  loop:
+    - golang
+    - java
+    - nodejs
+    - python
+    - ruby
+    - yarn

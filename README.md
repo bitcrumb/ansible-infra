@@ -1,4 +1,4 @@
-# Ansible Playbooks for Pi
+# Ansible Infra
 
 ![CI](https://github.com/bitcrumb/ansible-pi/workflows/CI/badge.svg)
 
@@ -12,37 +12,10 @@ make install
 
 ## Playbooks
 
-
-### Provisioning
-
-#### Raspberry Pi
-
-
-
-### Maintenance
-
-Perform regular maintenance on the entire inventoy by running the **maintenance** playbook.
+Running playbooks is as simple as performing one of available the make commands as specified in the `Makefile`:
 
 ```shell
-ansible-playbook -v playbooks/maintenance.yaml
-```
-
-### Unifi Controller
-
-Install the Unifi Controller to perform network monitoring by running the **unifi** playbook.
-
-```shell
-ansible-playbook -v playbooks/unifi.yaml
-```
-
-You can now visit the [web interface](https://raspberrypi.local:8443/) of the Unifi Controller.
-
-### Home Assistant
-
-Install Home Asssitant (Supervised) by running the **home-assistant** playbook.
-
-```shell
-ansible-playbook -v playbooks/home-assistant.yaml
-```
-
-You can now visit the [web interface](http://raspberrypi.local:8123/) of Home Assistant.
+make play_ping
+make play_dev
+make play_macos
+````

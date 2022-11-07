@@ -1,0 +1,41 @@
+ansible_user: root
+main_user: lode
+ansible_python_interpreter: /usr/bin/python3
+
+# Packages to install on all systems regardless of CPU architecture, package manager or OS.
+install_packages:
+  - autojump
+  - bash
+  - bash-completion
+  - bat
+  - ccat
+  - coreutils
+  - chroma
+  - curl
+  - exa
+  - findutils
+  - gcc
+  - git
+  - gnupg
+  - grep
+  - htop
+  - httpie
+  - less
+  - magic-wormhole
+  - make
+  - moreutils
+  - nano
+  - ncdu
+  - neofetch
+  - neovim
+  - netcat
+  - nmap
+  - openssl
+  - rsync
+  - screen
+  - shellcheck
+  - tmux
+  - tree
+  - unzip
+  - vim
+  - wget

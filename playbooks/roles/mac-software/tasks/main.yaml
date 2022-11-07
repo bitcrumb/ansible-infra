@@ -1,3 +1,0 @@
----
-- name: Ensure Homebrew is installed
-  import_tasks: install-homebrew.yaml

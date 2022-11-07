@@ -1,3 +1,0 @@
-raspberrypi_model: raspberrypi4
-home_assistant_install_script_url: https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh
-home_assistant_install_script_path: /tmp/home-assistant-install-script.sh

@@ -1,0 +1,57 @@
+- name: 'Install ZSH + Oh My ZSH'
+  ansible.builtin.include_role:
+    name: vaulttec.zsh
+  vars:
+    zsh_user: '{{ main_user }}'
+    zsh_ohmy_theme: shades-of-purple # TODO: Install as part of steup
+    zsh_ohmy_disable_auto_update: false
+    zsh_ohmy_plugins:
+      - 1password
+      - asdf
+      - autojump
+      - colored-man-pages
+      - colorize
+      - command-not-found
+      - common-aliases
+      - docker
+      - docker-compose
+      - git
+      - git-flow
+      - httpie
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
+    zsh_ohmy_custom_plugins:
+      - name: zsh-autosuggestions
+        repo: 'https://github.com/zsh-users/zsh-autosuggestions'
+      - name: zsh-syntax-highlighting
+        repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+    zsh_ohmy_custom_themes:
+      - name: spaceship-prompt
+        repo: 'https://github.com/denysdovhan/spaceship-prompt'
+      - name: shades-of-purple
+        repo: 'https://github.com/ahmadawais/Shades-of-Purple-iTerm2'
+
+- name: 'Create .zshrc.local'
+  ansible.builtin.template:
+    mode: 0755
+    src: templates/zshrc.local.j2
+    dest: '{{ ansible_env.HOME }}/.zshrc.local'
+
+- name: 'Link Spaceship Prompt'
+  ansible.builtin.file:
+    src: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme'
+    dest: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship.zsh-theme'
+    state: link
+
+- name: 'Link Shades of Purple Prompt'
+  ansible.builtin.file:
+    src: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/shades-of-purple/shades-of-purple.zsh-theme'
+    dest: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/shades-of-purple.zsh-theme'
+    state: link
+
+- name: 'Copy dotfiles to oh-my-zsh'
+  ansible.builtin.template:
+    mode: 0755
+    src: '{{ item }}'
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/{{ item | basename | regex_replace('.j2', '') }}"
+  with_fileglob: '../templates/dotfiles/*.j2'

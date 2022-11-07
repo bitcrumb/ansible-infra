@@ -1,0 +1,56 @@
+# Bootstraps a development environment for React Native
+---
+- name: 'Setup React Native development environment'
+  hosts: localhost
+
+  vars:
+    homebrew_cask_accept_external_apps: true
+
+  tasks:
+    # See: https://github.com/facebook/idb
+    - name: 'Install facebook/idb'
+      tags: [idb]
+      block:
+        - name: 'Tap facebook/idb'
+          community.general.packaging.os.homebrew_tap:
+            name: facebook/fb
+            state: present
+        - name: 'Install idb companion'
+          community.general.packaging.os.homebrew:
+            name: facebook/fb/idb-companion
+            state: present
+        - name: 'Install idb CLI tool'
+          ansible.builtin.pip:
+            name: fb-idb
+
+    # See: https://github.com/mobile-dev-inc/maestro
+    - name: 'Install maestro'
+      tags: [maestro]
+      block:
+        - name: 'Tap mobile-dev-inc/tap'
+          community.general.packaging.os.homebrew_tap:
+            name: mobile-dev-inc/tap
+            state: present
+        - name: 'Install maestro'
+          community.general.packaging.os.homebrew:
+            name: mobile-dev-inc/tap/maestro
+            state: present
+
+    - name: 'Install Android Studio'
+      tags: [android-studio]
+      block:
+        - name: 'Install Android Studio'
+          community.general.packaging.os.homebrew_cask:
+            name: 'android-studio'
+            state: latest
+
+        - name: 'Source the Android environment'
+          ansible.builtin.blockinfile:
+            path: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/android.zsh'
+            create: true
+            block: |
+              export ANDROID_HOME={{ ansible_env.HOME }}/Library/Android/sdk
+              export PATH=$PATH:$ANDROID_HOME/emulator
+              export PATH=$PATH:$ANDROID_HOME/tools
+              export PATH=$PATH:$ANDROID_HOME/tools/bin
+              export PATH=$PATH:$ANDROID_HOME/platform-tools

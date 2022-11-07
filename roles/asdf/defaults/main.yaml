@@ -1,0 +1,5 @@
+asdf_lts_versions:
+  nodejs: 16
+  python: 3
+  ruby: 3
+  yarn: 2

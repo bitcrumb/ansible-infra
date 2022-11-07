@@ -1,5 +1,0 @@
----
-- hosts: rpi
-  roles:
-    # - docker
-    - home-assistant

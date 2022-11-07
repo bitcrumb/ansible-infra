@@ -1,0 +1,22 @@
+homebrew_installed_packages:
+  - cmake
+  - diff-so-fancy
+  - fd
+  - ffmpeg
+  - git-delta
+  - glow
+  - gnu-tar
+  - gnutls
+  - gzip
+  - lazydocker
+  - lazygit
+  - mas
+  - pkg-config
+  - readline
+  - shfmt
+  - ssh-copy-id
+  - starship
+  - trash
+  - youtube-dl
+  - zsh
+  - zsh-completions
